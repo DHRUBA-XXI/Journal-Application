@@ -1,17 +1,15 @@
 package com.DhrubaStudio.journalApp.service;
-
+import java.time.LocalDateTime;
+import java.util.Optional;
 import com.DhrubaStudio.journalApp.entity.JournalEntry;
 import com.DhrubaStudio.journalApp.entity.User;
 import com.DhrubaStudio.journalApp.repository.JournalEntryRepository;
+
 import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -27,23 +25,17 @@ public class JournalEntryService {
         return journalEntryRepository.findById(Id);
     }
 
-    public List<JournalEntry> findByUsername(String userName){
-        User foundUser = userService.findbyUserName(userName);
-        return foundUser.getJournalEntries();
-    }
-
     @Transactional
-    public boolean saveEntry(JournalEntry entry, String userName){
+    public void saveEntry(JournalEntry entry, String userName){
             try {
                 User foundUser = userService.findbyUserName(userName);
                 entry.setDate(LocalDateTime.now());
                 JournalEntry savedEntry = journalEntryRepository.save(entry);
                 foundUser.getJournalEntries().add(savedEntry);
                 userService.saveUser(foundUser);
-                return true;
             }catch (Exception e){
-                //throw new RuntimeException("Error occurred during saving: ",e);
-                return  false;
+                log.error(e.getMessage());
+                throw new RuntimeException("Error occurred during saving: ",e);
             }
     }
 
@@ -53,11 +45,12 @@ public class JournalEntryService {
         try{
             User foundUser = userService.findbyUserName(userName);
             forRemoval = foundUser.getJournalEntries().removeIf(x -> x.getId().equals(Id));
-            if(forRemoval == true){
+            if(forRemoval){
                 userService.saveUser(foundUser);
                 journalEntryRepository.deleteById(Id);
             }
         }catch (Exception e){
+            log.error(e.getMessage());
             throw new RuntimeException("Error occurred during deleting: ",e);
         }
         return forRemoval;

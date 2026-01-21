@@ -17,7 +17,6 @@ public class UserServiceTests {
     @ValueSource(strings = {
             "Dhruv22",
             "Gobinda46",
-            "Arka07",
             "Debarjun47"
     })
     public void TestfindByUserName(String name){

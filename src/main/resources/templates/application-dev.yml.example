@@ -5,7 +5,7 @@ spring:
     name: Journal App
     data:
       mongodb:
-        uri: ${MONGODB_URI:mongodb://localhost:27017}
+        uri:
         database: journaldb
         auto-index-creation: true
 

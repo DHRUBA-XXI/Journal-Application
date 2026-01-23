@@ -1,9 +1,10 @@
 package com.DhrubaStudio.journalApp.service;
-import java.time.LocalDateTime;
-import java.util.Optional;
 import com.DhrubaStudio.journalApp.entity.JournalEntry;
 import com.DhrubaStudio.journalApp.entity.User;
 import com.DhrubaStudio.journalApp.repository.JournalEntryRepository;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;

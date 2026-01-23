@@ -1,6 +1,6 @@
 package com.DhrubaStudio.journalApp.service;
-
 import com.DhrubaStudio.journalApp.api.response.WeatherResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;

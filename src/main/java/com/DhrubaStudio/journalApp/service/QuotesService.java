@@ -1,6 +1,8 @@
 package com.DhrubaStudio.journalApp.service;
-
 import com.DhrubaStudio.journalApp.api.response.QuotesResponse;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -11,8 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
 
 @Service
 public class QuotesService {
@@ -43,13 +43,8 @@ public class QuotesService {
         HttpEntity<Void> entity = new HttpEntity<>(headers);
 
         try {
-            // Important change: we tell Jackson the root is a List<Quote>, not QuotesResponse
-            ResponseEntity<List<QuotesResponse>> response = restTemplate.exchange(
-                    API_URL,
-                    HttpMethod.GET,
-                    entity,
-                    new ParameterizedTypeReference<List<QuotesResponse>>() {}
-            );
+            ResponseEntity<List<QuotesResponse>> response = restTemplate.exchange(API_URL, HttpMethod.GET, entity,
+                    new ParameterizedTypeReference<List<QuotesResponse>>() {});
 
             if (!response.getStatusCode().is2xxSuccessful()) {
                 return "API returned non-success status: " + response.getStatusCode();
@@ -61,7 +56,6 @@ public class QuotesService {
                 return "Success response, but no quotes found.";
             }
 
-            // Take the first quote
             QuotesResponse quote = quotesList.get(0);
             return formatQuoteToString(quote);
 

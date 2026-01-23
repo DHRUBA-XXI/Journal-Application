@@ -1,11 +1,10 @@
 package com.DhrubaStudio.journalApp.controller;
-
-import com.DhrubaStudio.journalApp.api.response.QuotesResponse;
 import com.DhrubaStudio.journalApp.api.response.WeatherResponse;
 import com.DhrubaStudio.journalApp.entity.User;
 import com.DhrubaStudio.journalApp.service.QuotesService;
 import com.DhrubaStudio.journalApp.service.UserService;
 import com.DhrubaStudio.journalApp.service.WeatherService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

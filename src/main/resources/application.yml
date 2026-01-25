@@ -9,10 +9,10 @@ spring:
         database: journaldb
         auto-index-creation: true
 
-  server:
-    port: 8080
-    servlet:
-      context-path: /our-journal
+server:
+  port: 8080
+  servlet:
+    context-path: /our-journal
 
 api:
   weatherstack:

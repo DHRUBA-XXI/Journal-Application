@@ -1,5 +1,6 @@
 package com.DhrubaStudio.journalApp.service;
 import com.DhrubaStudio.journalApp.api.response.QuotesResponse;
+import com.DhrubaStudio.journalApp.cache.AppCache;
 
 import java.util.List;
 
@@ -18,16 +19,19 @@ import org.springframework.web.client.RestTemplate;
 public class QuotesService {
 
     private final String ninjasApiKey;
+    private final AppCache appCache;
+    private final RestTemplate restTemplate;
+    private final String API_URL;
 
     @Autowired
-    public QuotesService(@Value("${api.ninjas.key}") String ninjasApiKey) {
+    public QuotesService(@Value("${api.ninjas.key}") String ninjasApiKey,
+                         AppCache appCache,
+                         RestTemplate restTemplate) {
         this.ninjasApiKey = ninjasApiKey;
+        this.appCache = appCache;
+        this.restTemplate = restTemplate;
+        this.API_URL = appCache.apiData.get("API_Ninjas_Quotes");
     }
-
-    private static final String API_URL = "https://api.api-ninjas.com/v2/randomquotes?categories=happiness";
-
-    @Autowired
-    private RestTemplate restTemplate;
 
     private String formatQuoteToString(QuotesResponse quote) {
         StringBuilder sb = new StringBuilder();

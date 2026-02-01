@@ -64,10 +64,9 @@ public class UserService {
         userRepository.delete(userRepository.findByUserName(username));
     }
 
-    public List<User> getAll(){
+    public List<User> getAllusers(){
         return userRepository.findAll();
     }
-
 
     public Optional<User> findbyId(ObjectId Id){
         return userRepository.findById(Id);

@@ -28,6 +28,10 @@ public class User {
 
     private List<String> roles;
 
+    private String email;
+
+    private boolean sentimentAnalysisConsent = false;
+
     @NonNull
     public String getUserName() {
         return userName;
@@ -60,6 +64,22 @@ public class User {
 
     public List<String> getRoles() {
         return roles;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean getSentimentAnalysisConsent() {
+        return sentimentAnalysisConsent;
+    }
+
+    public void setSentimentAnalysisConsent(boolean sentimentAnalysisConsent) {
+        this.sentimentAnalysisConsent = sentimentAnalysisConsent;
     }
 
 }

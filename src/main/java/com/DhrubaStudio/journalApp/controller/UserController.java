@@ -32,6 +32,8 @@ public class UserController {
         User existingUser = userService.findbyUserName(username);
         existingUser.setUserName(user.getUserName());
         existingUser.setPassword(user.getPassword());
+        existingUser.setEmail(user.getEmail());
+        existingUser.setSentimentAnalysisConsent(user.getSentimentAnalysisConsent());
         userService.saveNewUser(existingUser);
         return new ResponseEntity<>(HttpStatus.OK);
     }

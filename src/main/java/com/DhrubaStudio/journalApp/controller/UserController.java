@@ -16,14 +16,21 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+
+    private final UserService userService;
+
+    private final WeatherService weatherService;
+
+    private final QuotesService quotesService;
 
     @Autowired
-    private WeatherService weatherService;
-
-    @Autowired
-    private QuotesService quotesService;
+    public UserController(UserService userService,
+                          WeatherService weatherResponse,
+                          QuotesService quotesService) {
+        this.userService = userService;
+        this.weatherService = weatherResponse;
+        this.quotesService = quotesService;
+    }
 
     @PutMapping("/update-profile")
     public ResponseEntity<?> updateUserPassword(@RequestBody User user){

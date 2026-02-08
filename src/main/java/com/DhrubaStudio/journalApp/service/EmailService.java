@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailService {
 
-    private JavaMailSender javaMailSender;
+    private final JavaMailSender javaMailSender;
 
     @Autowired
     public EmailService(JavaMailSender javaMailSender) {
@@ -29,5 +29,5 @@ public class EmailService {
             log.error("Exception occurred while sending email", e);
             return false;
         }
-        }
+    }
 }

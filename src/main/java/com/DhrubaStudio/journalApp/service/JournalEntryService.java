@@ -16,11 +16,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class JournalEntryService {
 
-    @Autowired
-    private JournalEntryRepository journalEntryRepository;
+    private final  JournalEntryRepository journalEntryRepository;
+
+    private final UserService userService;
 
     @Autowired
-    private UserService userService;
+    public JournalEntryService(JournalEntryRepository journalEntryRepository,
+                               UserService userService) {
+        this.journalEntryRepository = journalEntryRepository;
+        this.userService = userService;
+    }
 
     public Optional<JournalEntry> findbyId(ObjectId Id){
         return journalEntryRepository.findById(Id);
@@ -56,14 +61,5 @@ public class JournalEntryService {
         }
         return forRemoval;
     }
-    /*
-    public List<JournalEntry> getAll(){
-        return journalEntryRepository.findAll();
-    }
-
-    public void saveEntry(JournalEntry entry){
-            entry.setDate(LocalDateTime.now());
-            journalEntryRepository.save(entry);
-    }*/
 
 }

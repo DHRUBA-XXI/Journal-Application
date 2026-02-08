@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/public")
 public class PublicController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public PublicController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping("/create-user")
     public ResponseEntity<?> createUser(@RequestBody User user){

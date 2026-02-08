@@ -2,6 +2,7 @@ package com.DhrubaStudio.journalApp.entity;
 import java.time.LocalDateTime;
 import java.time.LocalDateTime;
 
+import com.DhrubaStudio.journalApp.enums.Sentiment;
 import com.mongodb.lang.NonNull;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -19,6 +20,8 @@ public class JournalEntry {
     private LocalDateTime date;
 
     private String content;
+
+    private Sentiment sentiment;
 
     public String getTitle() {
         return title;
@@ -50,5 +53,13 @@ public class JournalEntry {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Sentiment getSentiment() {
+        return sentiment;
+    }
+
+    public void setSentiment(Sentiment sentiment) {
+        this.sentiment = sentiment;
     }
 }

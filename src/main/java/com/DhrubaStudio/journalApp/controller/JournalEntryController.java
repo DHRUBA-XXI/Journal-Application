@@ -20,11 +20,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/journal")
 public class JournalEntryController {
 
-    @Autowired
-    private JournalEntryService journalEntryService;
+    private final JournalEntryService journalEntryService;
+
+    private final UserService userService;
 
     @Autowired
-    private UserService userService;
+    public JournalEntryController(JournalEntryService journalEntryService,
+                                  UserService userService) {
+        this.journalEntryService = journalEntryService;
+        this.userService = userService;
+    }
 
     @GetMapping
     public ResponseEntity<?> getAllJournalEntriesOfUser(){

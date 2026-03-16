@@ -18,15 +18,19 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
     public boolean saveNewUser(User user){
+        if(userRepository.findByUserName(user.getUserName()) != null){
+            log.warn("Signup failed: Username '{}' is already taken.", user.getUserName());
+            return false;
+        }
         try {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.setRoles(Arrays.asList("USER"));
@@ -72,11 +76,4 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Optional<User> findbyId(ObjectId Id){
-        return userRepository.findById(Id);
-    }
-
-    public void deletebyId(ObjectId Id){
-        userRepository.deleteById(Id);
-    }
 }

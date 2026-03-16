@@ -25,6 +25,10 @@ server:
   servlet:
     context-path: /our-journal
 
+security:
+  jwt:
+    secret-key: ${SECRET_KEY_FOR_JWT_SIGNING}
+
 api:
   weatherstack:
     key: ${WEATHERSTACK_API_KEY:YOUR_WEATHERSTACK_KEY_HERE}

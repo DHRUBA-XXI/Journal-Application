@@ -1,0 +1,1 @@
+A feature-rich backend REST API for a digital journaling application. Built using Java and Spring Boot 3, it features secure user authentication via Spring Security and JWTs, robust data persistence with MongoDB, and role-based access control. The application also integrates with external REST APIs to enrich user journal entries with real-time weather data and daily quotes.

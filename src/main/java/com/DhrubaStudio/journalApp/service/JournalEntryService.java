@@ -27,7 +27,7 @@ public class JournalEntryService {
         this.userService = userService;
     }
 
-    public Optional<JournalEntry> findbyId(ObjectId Id){
+    public Optional<JournalEntry> findById(ObjectId Id){
         return journalEntryRepository.findById(Id);
     }
 
@@ -46,7 +46,12 @@ public class JournalEntryService {
     }
 
     @Transactional
-    public boolean deletebyId(String userName, ObjectId Id){
+    public void saveUpdatedEntry(JournalEntry entry){
+        journalEntryRepository.save(entry);
+    }
+
+    @Transactional
+    public boolean deleteById(String userName, ObjectId Id){
         boolean forRemoval = false;
         try{
             User foundUser = userService.findbyUserName(userName);

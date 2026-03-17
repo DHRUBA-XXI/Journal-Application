@@ -39,10 +39,6 @@ public class JournalEntry {
         return id;
     }
 
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-
     public void setTitle(String title) {
         this.title = title;
     }

@@ -1,3 +1,5 @@
+-> MongoDB Atlas cloud for all storage.
+
 -> Authentication & Authorization: Implemented stateless user authentication and Role-Based Access Control (RBAC) using Spring Security and JSON Web Tokens (JWT).
 
 -> External Integrations: Integrated third-party external APIs using RestTemplate to dynamically fetch and append real-time weather data and daily quotes to user dashboards.
